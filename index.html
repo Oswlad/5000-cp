@@ -1,14 +1,229 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
-  <title>5000-coupon</title>
-</head>
-<body>
-    <p>五倍加碼券</p>
-<!-- <input type="number" id = "insert">
-  <button onclick="search()">submit</button>
-  <p id="result"></p> -->
-</body>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>5000-coupons</title>
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+			rel="stylesheet"
+			integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+			crossorigin="anonymous"
+		/>
+	</head>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+			list-style: none;
+		}
+		.banner {
+			width: 100%;
+			height: 100vh;
+			background: url('bg.jpg');
+			background-size: 100% 100%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+    
+		h2 {
+			border-bottom: 1px solid #fff;
+			padding-bottom: 20px;
+		}
+
+		.banner-txt {
+			width: 600px;
+			height: auto;
+			padding: 20px 40px;
+			background-color: rgba(158, 158, 158, 0.5);
+			backdrop-filter: blur(5px);
+			margin: 0 auto;
+			text-align: center;
+			padding-top: 50px;
+			color: #fff;
+			border-radius: 5px;
+		}
+		.insert {
+			padding: 5px;
+			border: none;
+			border-radius: 3px;
+			/* margin-bottom:10px; */
+			display: inline-block;
+			width: 80%;
+		}
+
+		.insert:focus {
+			outline: none;
+		}
+
+		.btn {
+			border: none;
+			padding: 5px 10px;
+			background-color: orange;
+			display: inline-block;
+			width: 19%;
+		}
+
+		.show {
+			text-align: left;
+			padding-top: 10px;
+		}
+
+    .foot{
+      position: absolute;
+      bottom:10px;
+      font-size: 10px;
+    }
+
+    .remark{
+      text-align: left;
+    }
+    @media screen and (max-width: 600px) {
+      .banner{
+        background-color: #818181;
+        background-image:url("mbg.jpg");
+      }
+  	  .banner-txt{
+        width:90%;
+      }
+      .insert{
+        width:100%;
+        display: block;
+        margin-bottom:10px;
+      }
+      .btn{
+        width:100%;
+        display: block;
+      }
+    }
+    
+	</style>
+	<body>
+		<div class="banner">
+			<div class="container">
+				<div class="banner-txt">
+					<h2>查詢 2021 五倍加碼券</h2>
+					<input type="number" class="insert" id="insert" placeholder="請輸入身份證後三碼" />
+					<button class="btn" onclick="search()">查詢</button>
+					<p class="show" id="result"></p>
+          <p class="remark"> 非官方，加碼券相關資訊請至 <a href="https://twup.sme.gov.tw/5000/index.php?action=wpage_42">振興五倍券官網</a></p>
+          <!-- <ul class="remark"> -->
+           
+            <!-- <li>各加碼券於10/11~11/5共4週進行抽籤，週週抽。</li>
+            <li>活動期間每週五(10/8起)23:59截止加碼券登記，週六00:00以後登記者，將參加次一週抽籤活動。</li>
+            <li>每週抽籤順序由面額大至小排列，均採亂數方式抽籤，每人每週最多中籤1次，4週最多可有4次中籤機會，每種券別僅能中籤1次。</li>
+            <li>加碼券中籤公告時程：</li>
+            <li>早上10:30抽籤的中籤名單，會在當天下午17:00公告並發送中籤簡訊。</li>
+            <li>下午15:30抽籤的中籤名單，會在隔天早上8:30公告並發送中籤簡訊。</li>
+            <li>各部會七種加碼券計778萬份提供抽籤；好食券於10/29前綁定數位五倍券皆可獲得，不用抽籤；農遊券58萬份於第二階段另行抽籤發放；交通部國旅券於10/7加碼120萬份，合計逾1,356萬份</li> -->
+          <!-- </ul> -->
+				</div>
+			</div>
+      <div class="foot">
+        <p>web photo by 
+          <a href="https://unsplash.com/@introspectivedsgn?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Erik Mclean</a> 
+          on <a href="https://unsplash.com/s/photos/coupon?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></p>
+        <p>mobile photo by 
+          <a href="https://unsplash.com/@ekrulila?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Ekrulila</a> 
+          on <a href="https://unsplash.com/collections/11720789/verse-of-the-day?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+        </p>
+      </div>
+		</div>
+	</body>
+	<script>
+		function search() {
+			let coupons = [
+				{
+					week: '1',
+					name: '國旅券',
+					codes: ['21', '32', '98', '67', '97', '410'],
+				},
+				{
+					week: '1',
+					name: 'i原券',
+					codes: ['64', '85'],
+				},
+				{
+					week: '1',
+					name: '農遊券',
+					codes: ['89', '32', '54', '597', '453', '152'],
+				},
+				{
+					week: '1',
+					name: '藝fun券(數位)',
+					codes: ['96', '15', '07', '30', '73', '98', '19', '11'],
+				},
+				{
+					week: '1',
+					name: '藝fun券(紙本)',
+					codes: ['39', '37', '23', '36', '79', '08', '14', '75'],
+				},
+				{
+					week: '1',
+					name: '動滋券',
+					codes: ['97', '13', '19', '55', '71', '93', '381', '734', '644', '453', '985'],
+				},
+				{
+					week: '1',
+					name: '客庄劵2.0',
+					codes: ['81', '900'],
+				},
+				{
+					week: '1',
+					name: '地方創生券',
+					codes: [
+						'081',
+						'089',
+						'105',
+						'188',
+						'335',
+						'358',
+						'367',
+						'396',
+						'441',
+						'467',
+						'521',
+						'594',
+						'798',
+						'912',
+						'941',
+					],
+				},
+			];
+
+			let match = [];
+			let str = '';
+			let insert = document.getElementById('insert').value;
+			let sp = insert.split(''); // array
+
+				coupons.forEach((item) => {
+					item.codes.forEach((element) => {
+            let obj = {
+						  week: item.week,
+						  name: item.name,
+              codes:element
+					  };
+						let code_split = element.split('');
+						if (code_split.length == 3 && insert == element) {
+							match.push(obj);
+						}
+						if (code_split.length == 2 &&　insert.substr(-2, 2) == element) {
+								match.push(obj);
+						}
+					});
+				});
+
+			if (match.length == 0) {
+				str = '未中獎';
+			} else {
+				match.forEach((item) => {
+					str += `第 ${item.week} 週 ${item.name}  [${item.codes}] </br>`;
+				});
+			}
+
+			document.getElementById('result').innerHTML = `身份證 ${insert} </br> ${str}`;
+		}
+	</script>
 </html>
