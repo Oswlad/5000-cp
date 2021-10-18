@@ -47,7 +47,7 @@
 
 		.banner-txt {
 			width: 600px;
-			min-height: 300px;
+			/* min-height: 300px; */
 			padding: 20px 40px;
 			background-color: rgba(158, 158, 158, 0.5);
 			backdrop-filter: blur(5px);
@@ -125,7 +125,7 @@
 			<div class="container">
 				<div class="banner-txt">
 					<h2>查詢 2021 五倍加碼券</h2>
-					<input type="number" class="insert" id="insert" placeholder="請輸入身份證後三碼" />
+					<input type="number" class="insert" id="insert" placeholder="請輸入身份證後三碼"  maxlength="3"/>
 					<button class="btn" onclick="search()">查詢</button>
 					<p class="show" id="result"></p>
           <p class="remark"> 非官方，實際以官方公告為主，加碼券相關資訊請至 <a href="https://twup.sme.gov.tw/5000/index.php?action=wpage_42">振興五倍券官網</a></p>
@@ -153,6 +153,11 @@
 		</div>
 	</body>
 	<script>
+    document.getElementById('insert').addEventListener('keypress',function(event){
+      if(event.keyCode == 13){
+        search();
+      }
+    })
 		function search() {
 			let coupons = [
 				{
