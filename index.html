@@ -1,7 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
- 
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-144348228-2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-144348228-2');
+    </script>
 
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -23,13 +31,14 @@
 			list-style: none;
 		}
 		.banner {
-			width: 100%;
+			max-width: 1500px;
 			height: 100vh;
 			background: url('bg.jpg');
 			background-size: 100% 100%;
 			display: flex;
 			justify-content: center;
 			align-items: center;
+			margin:0 auto;
 		}
     
 		h2 {
@@ -122,7 +131,8 @@
 			<div class="container">
 				<div class="banner-txt">
 					<h2>查詢 2021 五倍加碼券</h2>
-					<p class="last_update">last update : 2021 / 10/ 19 15:42</p>
+					<p> 下一次抽獎時間 10/20 15:30【藝Fun券】</p>
+					<p class="last_update">last update : 2021 / 10/ 20 10:40</p>
 					<input type="number" class="insert" id="insert" placeholder="請輸入身份證後三碼" />
 					<button class="btn" onclick="search()">查詢</button>
 					<p class="show" id="result"></p>
@@ -224,6 +234,11 @@
 					name: 'i原券',
 					codes: ['12', '59'],
 				},
+				{
+					week: '2',
+					name: '農遊券',
+					codes: ['13','50'],
+				},
 			];
 
 			let match = [];
@@ -233,11 +248,11 @@
 
 				coupons.forEach((item) => {
 					item.codes.forEach((element) => {
-            let obj = {
-						  week: item.week,
-						  name: item.name,
-              codes:element
-					  };
+            			let obj = {
+							week: item.week,
+							name: item.name,
+              				codes:element
+					  	};
 						let code_split = element.split('');
 						if (code_split.length == 3 && insert == element) {
 							match.push(obj);
